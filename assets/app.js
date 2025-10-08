@@ -199,3 +199,23 @@ window.addEventListener('load', init);
     });
   });
 })();
+
+
+// === 'Abrir com' dropdown behavior (Cerimônia) ===
+document.addEventListener("DOMContentLoaded",()=>{
+  const btn = document.getElementById("openWithBtn");
+  const opts = document.getElementById("mapOptions");
+  if(!btn || !opts) return;
+  const toggle = ()=>{
+    const isOpen = opts.classList.toggle("show");
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  };
+  btn.addEventListener("click", (e)=>{ e.preventDefault(); toggle(); });
+  document.addEventListener("click",(e)=>{
+    if(!opts.classList.contains("show")) return;
+    if(!opts.contains(e.target) && e.target!==btn){
+      opts.classList.remove("show");
+      btn.setAttribute("aria-expanded","false");
+    }
+  });
+});

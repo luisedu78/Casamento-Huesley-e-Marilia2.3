@@ -302,22 +302,32 @@ nav .brand { display:flex; gap:10px; align-items:center; font-weight:700; letter
 .home-intro p{ margin: 8px 0; }
 
 
-/* === Robust mobile stack for ceremony map buttons (attribute selector, no HTML change) === */
-@media (max-width: 768px){
-  /* target the div that uses inline flex layout for the map buttons */
-  div[style*="display:flex"][style*="flex-wrap"][style*="gap"] a.button[href*="google.com/maps"],
-  div[style*="display:flex"][style*="flex-wrap"][style*="gap"] a.button[href*="maps/dir"],
-  div[style*="display:flex"][style*="flex-wrap"][style*="gap"] a.button[href*="maps/search"],
-  div[style*="display:flex"][style*="flex-wrap"][style*="gap"] a.button[href*="waze"],
-  div[style*="display:flex"][style*="flex-wrap"][style*="gap"] a.button[href*="waze.com"]{
-    display:block !important;
-    width:100% !important;
-    margin:0 !important;
-  }
-  /* ensure vertical stacking */
-  div[style*="display:flex"][style*="flex-wrap"][style*="gap"]{
-    flex-direction: column !important;
-    align-items: stretch !important;
-    row-gap: 10px !important;
-  }
+/* === Unified 'Abrir com' compact button + options === */
+.button.openwith{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid #e6d9d4;
+  background: linear-gradient(135deg, var(--terracotta), var(--green));
+  color:#fff; font-weight:700; font-size:.95rem;
+  box-shadow: var(--shadow);
+}
+.button.openwith:hover{ filter:brightness(1.03) }
+.map-options{
+  display:none;
+  flex-direction:column; gap:8px;
+  width:100%;
+}
+.map-options.show{ display:flex; }
+.map-options .option{
+  background:#fff; color:var(--text);
+  border:1px solid #e6e6e6; border-radius:12px;
+  padding:10px 12px; text-align:center;
+}
+/* mobile: stack everything nicely */
+@media (max-width: 720px){
+  .ceremony-actions{ flex-direction:column !important; align-items:stretch !important; }
+  .button.openwith{ width:100%; }
+  .map-options .option{ width:100%; }
 }
